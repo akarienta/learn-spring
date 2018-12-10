@@ -1,9 +1,11 @@
-package se.akarienta.learnspring;
+package se.akarienta.learnspring.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import se.akarienta.learnspring.dto.GreetingDTO;
 
 @RestController
 public class GreetingController {
@@ -11,7 +13,7 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-        return new Greeting(counter.incrementAndGet(), String.format(template, name));
+    public GreetingDTO greeting(@RequestParam(value="name", defaultValue="World") String name) {
+        return new GreetingDTO(counter.incrementAndGet(), String.format(template, name));
     }
 }
